@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model user {
+  id          Int       @id @default(autoincrement())
+  email       String    @unique
+  nickname    String    @unique @default("")
+  firstname   String    @default("")
+  lastname    String    @default("")
+  loginSecret String?
+  comment     comment[]
+  likeb       likeb[]
+  messages    message[]
+  posts       post[]
+  rooms       room[]    @relation("participate")
+  //user_B      user[]    @relation("userfollow")
+  //user_A      user[]    @relation("userfollow")
+  follower      user[]    @relation("userfollow")
+  following      user[]    @relation("userfollow")
+}
+
+model post {
+  id        Int       @id @default(autoincrement())
+  caption   String
+  userId    Int
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now()) @updatedAt
+  author    user      @relation(fields: [userId], references: [id])
+  comments  comment[]
+  files     file[]
+  likes     likeb[]
+
+  @@index([userId], name: "userId")
+}
+
+model file {
+  id     Int    @id @default(autoincrement())
+  url    String
+  postId Int
+  post   post   @relation(fields: [postId], references: [id])
+
+  @@index([postId], name: "file_post_delete")
+}
+
+model likeb {
+  id     Int  @id @default(autoincrement())
+  userId Int
+  postId Int
+  post   post @relation(fields: [postId], references: [id])
+  user   user @relation(fields: [userId], references: [id])
+
+  @@index([postId], name: "likes_post_delete")
+  @@index([userId], name: "userId")
+}
+
+model comment {
+  id     Int    @id @default(autoincrement())
+  text   String
+  userId Int
+  postId Int
+  post   post   @relation(fields: [postId], references: [id])
+  user   user   @relation(fields: [userId], references: [id])
+
+  @@index([postId], name: "post_like_delete")
+  @@index([userId], name: "userId")
+}
+
+model room {
+  id           Int       @id @default(autoincrement())
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @default(now()) @updatedAt
+  messages     message[]
+  participants user[]    @relation("participate")
+}
+
+model message {
+  id        Int      @id @default(autoincrement())
+  text      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  userId    Int
+  roomId    Int
+  room      room     @relation(fields: [roomId], references: [id])
+  from      user     @relation(fields: [userId], references: [id])
+
+  @@index([roomId], name: "roomId")
+  @@index([userId], name: "userId")
+}

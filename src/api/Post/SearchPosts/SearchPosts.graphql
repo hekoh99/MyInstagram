@@ -1,0 +1,3 @@
+type Query {
+  SearchPosts(term: String!): [Post]
+}

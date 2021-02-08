@@ -1,0 +1,9 @@
+type DisplayPost {
+  post: Post
+  files: [File]
+  comments: [Comment]
+}
+
+type Query {
+  SeeFullPost(id: Int): DisplayPost
+}

@@ -1,0 +1,75 @@
+type File {
+  id: Int
+  url: String
+  postId: Int
+  post: Post
+}
+
+type Likeb {
+  id: Int
+  userId: Int
+  postId: Int
+  post: Post
+  user: User
+}
+
+type Post {
+  id: Int
+  caption: String
+  userId: Int
+  author: User
+  comments: [Comment]
+  files: [File]
+  likes: [Likeb]
+  isLiked: Boolean
+  countLike: Int
+  createdAt: String
+  updatedAt: String
+}
+
+type User {
+  id: Int
+  email: String
+  nickname: String
+  firstname: String
+  lastname: String
+  fullname: String
+  loginSecret: String
+  comments: [Comment]
+  likes: [Likeb]
+  message: [Message]
+  posts: [Post]
+  rooms: [Room]
+  follower: [User]
+  following: [User]
+  isfollowing: Boolean
+  isSelf: Boolean
+}
+
+type Comment {
+  id: Int
+  text: String
+  userId: Int
+  postId: Int
+  post: Post
+  user: User
+}
+
+type Message {
+  id: Int
+  text: String
+  createdAt: String
+  updatedAt: String
+  userId: Int
+  roomId: Int
+  room: Room
+  from: User
+}
+
+type Room {
+  id: Int
+  createdAt: String
+  updatedAt: String
+  messages: [Message]
+  participants: [User]
+}
