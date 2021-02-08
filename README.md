@@ -4,14 +4,14 @@ instagram with prisma + express + react +react native
 
 ## User Stories
 
-- [] see the feed
-- [] Like / unlike a photo
-- [] Comment on a photo
-- [] search by User
-- [] search user profile
-- [] Follow/ unFollow
-- [] see the full photo
-- [] create account / Login
-- [] upload photos
-- [] edit the photo (delete)
+- [x] see the feed
+- [x] Like / unlike a photo
+- [x] Comment on a photo
+- [x] search by User
+- [x] search user profile
+- [x] Follow/ unFollow
+- [x] see the full photo
+- [x] create account / Login
+- [x] upload photos
+- [x] edit the photo (delete)
 - etc
