@@ -10,7 +10,6 @@ export default {
           return context.pubsub.asyncIterator(["sendChat"]);
         },
         (payload, variables) => {
-          console.log(payload);
           return payload.GetMessage.to === variables.receiveId;
         }
       ),
