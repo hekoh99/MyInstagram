@@ -1,3 +1,5 @@
+scalar DateTime
+
 type File {
   id: Int
   url: String
@@ -23,8 +25,8 @@ type Post {
   likes: [Likeb]
   isLiked: Boolean
   countLike: Int
-  createdAt: String
-  updatedAt: String
+  createdAt: DateTime
+  updatedAt: DateTime
 }
 
 type User {
