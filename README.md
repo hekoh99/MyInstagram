@@ -1,6 +1,6 @@
 # MyInstagram
 
-instagram with prisma + express + react +react native
+instagram with prisma + express + react
 
 ## User Stories
 
